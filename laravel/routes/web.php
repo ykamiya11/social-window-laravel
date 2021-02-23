@@ -11,6 +11,12 @@
 |
 */
 
+/* 初期のルーティング部分は削除、またはコメントアウトします。
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+//新しくルーティング情報を追加
+Route::get('/', 'InquiryController@index');
+

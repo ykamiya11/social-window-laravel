@@ -17,28 +17,67 @@
         @csrf
         <div class="form-group">
             <label for="name">社会の窓が空いている人のお名前</label>
-            <input type="text" name="name" class="form-control" id="name" placeholder="お名前"/>
+            {{-- ここから編集(name) --}}
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="お名前"/>
+            <div class="invalid-feedback">
+                @error('name')
+                    {{ $message }}
+                @enderror
+            </div>
+            {{-- ここまで編集(name) --}}
+
         </div>
+
         <div class="form-group">
             <label for="email">社会の窓が空いている人のメールアドレス</label>
-            <input type="text" name="email" class="form-control" id="email" placeholder="メールアドレス"/>
+
+            {{-- ここから編集(email) --}}
+            <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="メールアドレス"/>
+            <div class="invalid-feedback">
+                @error('email')
+                    {{ $message }}
+                @enderror
+            </div>
+            {{-- ここまで編集(email) --}}
+
         </div>
+
         <div class="form-group">
             <label for="relationship">社会の窓が空いている人との関係</label>
-            <select name="relationship" class="form-control" id="relationship">
+
+            {{-- ここから編集(relationship) --}}
+            <select name="relationship" class="form-control @error('relationship') is-invalid @enderror" id="relationship">
                 <option value="">選択してください</option>
                 @foreach (config('relationship') as $value)
                     <option value="{{ $value }}">{{ $value }}</option>
                 @endforeach
             </select>
+            <div class="invalid-feedback">
+                @error('relationship')
+                    {{ $message }}
+                @enderror
+            </div>
+            {{-- ここまで編集(relationship) --}}
+
         </div>
+
         <div class="form-group">
             <label for="content">何か伝えたいこと</label>
-            <textarea name="content" class="form-control" id="content" rows="3" placeholder="伝えたいことを入力してください"></textarea>
+
+            {{-- ここから編集(content) --}}
+            <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="content" rows="3" placeholder="伝えたいことを入力してください"></textarea>
+            <div class="invalid-feedback">
+                @error('content')
+                    {{ $message }}
+                @enderror
+            </div>
+            {{-- ここまで編集(content) --}}
+
         </div>
-        <div class="text-center">
-            <button class="btn btn-primary" type="submit">確認画面へ</button>
+
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">確認画面へ</button>
         </div>
-    </form>        
+    </form>
 </div>
 @endsection

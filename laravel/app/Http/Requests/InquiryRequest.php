@@ -35,4 +35,14 @@ class InquiryRequest extends FormRequest
         ];
         // ここまで編集
     }
+    
+    //ここから追加
+    public function attributes(){
+        return[
+          'name'  => 'お名前',
+          'email'  => 'メールアドレス',
+          'relationship'  => '社会の窓が空いている人との関係',
+          'content'  => '何か伝えたいこと',
+        ];
+    }
 }

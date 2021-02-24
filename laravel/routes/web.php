@@ -20,3 +20,6 @@ Route::get('/', function () {
 //新しくルーティング情報を追加
 Route::get('/', 'InquiryController@index');
 
+//ここから追加
+Route::post('inquiry', 'inquiryContoroller@postInquiry')->name('inquiry');
+//ここまで追加

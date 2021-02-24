@@ -8,7 +8,7 @@ class InquiryController extends Controller
 {
     //ここから追加
     public function index(){
-        return 'hello world!';
+        return view('index');
     }
     //ここまで追加
 }

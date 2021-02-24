@@ -21,5 +21,5 @@ Route::get('/', function () {
 Route::get('/', 'InquiryController@index');
 
 //ここから追加
-Route::post('inquiry', 'inquiryContoroller@postInquiry')->name('inquiry');
+Route::post('inquiry', 'InquiryController@postInquiry')->name('inquiry');
 //ここまで追加

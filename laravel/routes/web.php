@@ -17,13 +17,12 @@ Route::get('/', function () {
 });
 */
 
-//新しくルーティング情報を追加
-Route::get('/', 'InquiryController@index');
+//「戻る」ボタンでトップページへ戻る遷移を作る
+Route::get('/', 'InquiryController@index')->name('index');
 
-//ここから追加
+
 Route::post('inquiry', 'InquiryController@postInquiry')->name('inquiry');
-//ここまで追加
 
-//ここから追加
 Route::get('confirm', 'InquiryController@showConfirm')->name('confirm');
-//ここまで追加
+
+Route::post('confirm', 'InquiryController@postConfirm')->name('confirm');

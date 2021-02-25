@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// 追加
 use App\Http\Requests\InquiryRequest;
 use Illuminate\Http\Request;
 
@@ -13,19 +12,18 @@ class InquiryController extends Controller
         return view('index');
     }
 
-    // 追加
     public function postInquiry(InquiryRequest $request)
     {
-        //ここから編集
         $validated = $request->validated();
         $request->session()->put('inquiry', $validated);
         return redirect(route('confirm'));
-        //ここまで編集
     }
     
-    //ここから追加
     public function showConfirm(Request $request){
-        dd($request->session()->get('inquiry'));
+        //ここから編集
+        $sessionDate = $request->session()->get('inquiry');
+        $message = view('emails.inquiry', $sessionDate);
+        return view('confirm', ['message' => $message]);
+        //ここまで編集
     }
-    //ここまで追加
 }

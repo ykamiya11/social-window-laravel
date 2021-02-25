@@ -16,6 +16,16 @@ class InquiryController extends Controller
     // 追加
     public function postInquiry(InquiryRequest $request)
     {
-        return 'ok';
+        //ここから編集
+        $validated = $request->validated();
+        $request->session()->put('inquiry', $validated);
+        return redirect(route('confirm'));
+        //ここまで編集
     }
+    
+    //ここから追加
+    public function showConfirm(Request $request){
+        dd($request->session()->get('inquiry'));
+    }
+    //ここまで追加
 }

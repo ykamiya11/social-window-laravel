@@ -23,3 +23,7 @@ Route::get('/', 'InquiryController@index');
 //ここから追加
 Route::post('inquiry', 'InquiryController@postInquiry')->name('inquiry');
 //ここまで追加
+
+//ここから追加
+Route::get('confirm', 'InquiryController@showConfirm')->name('confirm');
+//ここまで追加

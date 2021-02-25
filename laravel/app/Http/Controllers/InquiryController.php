@@ -22,8 +22,15 @@ class InquiryController extends Controller
     }
     
     public function showConfirm(Request $request){
-        //ここから編集
+        
         $sessionData = $request->session()->get('inquiry');
+        
+        //ここから追加
+        if(is_null($sessionData)){
+            return redirect(route('index'));
+        }
+        //ここまで追加
+        
         $message = view('emails.inquiry', $sessionData);
         return view('confirm', ['message' => $message]);
         //ここまで編集
@@ -32,14 +39,33 @@ class InquiryController extends Controller
     public function postConfirm(Request $request){
         //ここから追加
         $sessionData = $request->session()->get('inquiry');
+        
+        //ここから追加
+        if(is_null($sessionData)){
+            return redirect(route('index'));
+        }
+        //ここまで追加
+        
         $request->session()->forget('inquiry');
         
         Mail::to($sessionData['email'])->send(new InquiryMail($sessionData));
         //ここまで追加
-        return redirect(route('sent'));
+        
+        //ここから編集
+        return redirect(route('sent')->with('sent_inquiry'. true));
+        //ここまで編集
     }
-    
-    public function showSentMessage(){
+    // 引数に Request $request を追加
+    public function showSentMessage(Request $request)
+    {
+        // ここから追加
+        $request->session()->keep('sent_inquiry');
+        $sessionData = $request->session()->get('sent_inquiry');
+        if (is_null($sessionData)) {
+            return redirect(route('index'));
+        }
+        // ここまで追加
+
         return view('sent');
     }
 }

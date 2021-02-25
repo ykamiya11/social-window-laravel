@@ -26,4 +26,12 @@ class InquiryController extends Controller
         return view('confirm', ['message' => $message]);
         //ここまで編集
     }
+    
+    public function postConfirm(Request $request){
+        return redirect(route('sent'));
+    }
+    
+    public function showSentMessage(){
+        return view('sent');
+    }
 }

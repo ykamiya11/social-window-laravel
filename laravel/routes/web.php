@@ -26,3 +26,6 @@ Route::post('inquiry', 'InquiryController@postInquiry')->name('inquiry');
 Route::get('confirm', 'InquiryController@showConfirm')->name('confirm');
 
 Route::post('confirm', 'InquiryController@postConfirm')->name('confirm');
+
+//完了画面のコントローラーを指すためのルーティング設定
+Route::get('sent', 'InquiryController@showSentMessage')->name('sent');

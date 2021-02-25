@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InquiryRequest;
+use App\Mail\InquiryMail; //追加
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail; //追加
 
 class InquiryController extends Controller
 {
@@ -21,13 +23,19 @@ class InquiryController extends Controller
     
     public function showConfirm(Request $request){
         //ここから編集
-        $sessionDate = $request->session()->get('inquiry');
-        $message = view('emails.inquiry', $sessionDate);
+        $sessionData = $request->session()->get('inquiry');
+        $message = view('emails.inquiry', $sessionData);
         return view('confirm', ['message' => $message]);
         //ここまで編集
     }
     
     public function postConfirm(Request $request){
+        //ここから追加
+        $sessionData = $request->session()->get('inquiry');
+        $request->session()->forget('inquiry');
+        
+        Mail::to($sessionData['email'])->send(new InquiryMail($sessionData));
+        //ここまで追加
         return redirect(route('sent'));
     }
     

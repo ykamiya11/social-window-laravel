@@ -29,3 +29,6 @@ Route::post('confirm', 'InquiryController@postConfirm')->name('confirm');
 
 //完了画面のコントローラーを指すためのルーティング設定
 Route::get('sent', 'InquiryController@showSentMessage')->name('sent');
+
+//送信ログ閲覧画面のURLを追加
+Route::get('history', 'HistoryController@show')->name('history')->middleware('history.basic');

@@ -53,7 +53,7 @@ class InquiryController extends Controller
         
         Mail::to($sessionData['email'])->send(new InquiryMail($sessionData));
 
-        return redirect(route('sent')->with('sent_inquiry'. true));
+        return redirect(route('sent'))->with('sent_inquiry', true);
     }
     public function showSentMessage(Request $request)
     {
